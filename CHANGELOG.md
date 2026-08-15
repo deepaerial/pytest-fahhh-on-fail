@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- CI pipeline split into separate jobs: `lint` (ruff) → `test` → `tag` →
+  `build` → `publish`. Lint and tests also run on pull requests.
+- The build job uploads `dist/` as an artifact; the publish job runs on a
+  fresh runner, downloads it, and publishes to PyPI.
+- `ruff` added as a dev dependency.
+
 ## [1.0.0] - 2026-08-15
 
 ### Added

@@ -37,6 +37,7 @@ pytest-fahhh-on-fail = "pytest_fahhh_on_fail.plugin"
 [dependency-groups]
 dev = [
     "pytest>=8.0",
+    "ruff>=0.9",
     "tox>=4.20",
     "tox-uv>=1.20",
 ]

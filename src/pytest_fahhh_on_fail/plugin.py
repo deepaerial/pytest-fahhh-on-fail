@@ -5,7 +5,7 @@ from importlib import resources
 from pathlib import Path
 
 import pytest
-from playsound3 import playsound, PlaysoundException
+from playsound3 import PlaysoundException, playsound
 
 logger = logging.getLogger("pytest_fahhh")
 

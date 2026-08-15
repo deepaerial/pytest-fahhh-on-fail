@@ -110,11 +110,15 @@ previous one succeeds:
 2. **test** — the full Python 3.10–3.14 matrix
 3. **tag** — reads the version from `pyproject.toml`; if no `v<version>` tag
    exists yet, creates and pushes it
-4. **publish** — builds the wheel and publishes to PyPI
+4. **build** — builds the wheel and sdist, uploads `dist/` as a run artifact
+5. **publish** — on a fresh runner, downloads that artifact and publishes it
+   to PyPI
 
-`lint` and `test` also run on every pull request. The `tag` and `publish` jobs
-run only on push to `main`, and publishing happens only when the `tag` job
-actually created a new tag (i.e. the version was bumped).
+`lint` and `test` also run on every pull request. The `tag`, `build`, and
+`publish` jobs run only on push to `main`, and publishing happens only when the
+`tag` job actually created a new tag (i.e. the version was bumped). Building
+and publishing are separate jobs, so the publish step never reuses the build
+machine — it uploads exactly what was built.
 
 So a release is just bumping the version:
 

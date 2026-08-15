@@ -10,7 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - CI pipeline split into separate jobs: `lint` (ruff) → `test` → `tag` →
-  `publish`. Lint and tests also run on pull requests.
+  `build` → `publish`. Lint and tests also run on pull requests.
+- The build job uploads `dist/` as an artifact; the publish job runs on a
+  fresh runner, downloads it, and publishes to PyPI.
 - `ruff` added as a dev dependency.
 
 ## [1.0.0] - 2026-08-15

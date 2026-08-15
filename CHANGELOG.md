@@ -9,10 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- CI pipeline split into separate jobs: `lint` (ruff) → `test` → `tag` →
-  `build` → `publish`. Lint and tests also run on pull requests.
+- Version is now dynamic: derived from git tags via `uv-dynamic-versioning`
+  (hatchling backend) instead of a static `version` field in `pyproject.toml`.
+- CI is now tag-driven: `lint` (ruff) → `test` → `build` → `publish`. Lint and
+  tests run on pull requests and pushes to `main`; build and publish run only
+  on pushed `v*` tags.
 - The build job uploads `dist/` as an artifact; the publish job runs on a
   fresh runner, downloads it, and publishes to PyPI.
+- Slimmer sdist: only ships `src/`, `pyproject.toml`, `README.md`,
+  `LICENSE.md`, and `CHANGELOG.md`.
 - `ruff` added as a dev dependency.
 
 ## [1.0.0] - 2026-08-15

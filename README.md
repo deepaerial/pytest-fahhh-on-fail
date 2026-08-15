@@ -101,35 +101,38 @@ uv run tox
 
 CI runs the same matrix (Python 3.10–3.14) on every push to `main`.
 
+## Versioning
+
+The version is **dynamic**: it comes from git tags, not from a `version` field
+in `pyproject.toml`. Building exactly on a `vX.Y.Z` tag produces the clean
+version `X.Y.Z`; building ahead of a tag produces a development version like
+`1.0.0.post4.dev0+ae68c71`.
+
 ## Releasing
 
-The CI pipeline is a chain of separate jobs, each running only after the
-previous one succeeds:
+Publishing is **tag-driven**. The CI pipeline is a chain of separate jobs, each
+running only after the previous one succeeds:
 
 1. **lint** — `ruff check` + `ruff format --check`
 2. **test** — the full Python 3.10–3.14 matrix
-3. **tag** — reads the version from `pyproject.toml`; if no `v<version>` tag
-   exists yet, creates and pushes it
-4. **build** — builds the wheel and sdist, uploads `dist/` as a run artifact
-5. **publish** — on a fresh runner, downloads that artifact and publishes it
+3. **build** — builds the wheel and sdist from the tag, uploads `dist/` as a
+   run artifact
+4. **publish** — on a fresh runner, downloads that artifact and publishes it
    to PyPI
 
-`lint` and `test` also run on every pull request. The `tag`, `build`, and
-`publish` jobs run only on push to `main`, and publishing happens only when the
-`tag` job actually created a new tag (i.e. the version was bumped). Building
+`lint` and `test` also run on every pull request and every push to `main`.
+`build` and `publish` run only when a `v*` tag is pushed, and the build uses
+`fetch-depth: 0` so the tag is present when the version is derived. Building
 and publishing are separate jobs, so the publish step never reuses the build
 machine — it uploads exactly what was built.
 
-So a release is just bumping the version:
+So a release is just tagging:
 
 ```bash
-# 1. bump `version` in pyproject.toml
-git add pyproject.toml uv.lock
-git commit -m "release v1.0.1"
-git push origin main
+git tag v1.0.1
+git push origin v1.0.1
 ```
 
 Requires a trusted publisher configured on the PyPI project
-(`pytest-fahhh-on-fail`). If a publish run fails after the tag was already
-created, delete the tag (`git push origin :refs/tags/v1.0.0`) and push again,
-or bump the version.
+(`pytest-fahhh-on-fail`). If a publish run fails, fix the cause and re-push the
+same tag (or a corrected one).

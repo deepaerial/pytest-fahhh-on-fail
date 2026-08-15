@@ -1,4 +1,4 @@
-"""pytest-fahhh: a pytest plugin that plays FAHHH meme sound when a test session fails.
+"""pytest-fahhh-on-fail: a pytest plugin that plays the FAHHH meme sound when a test session fails.
 
 The plugin registers itself via the ``pytest11`` entry point and is loaded
 automatically. On session failure it plays the bundled ``sound.mp3`` (or a

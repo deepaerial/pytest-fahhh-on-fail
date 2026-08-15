@@ -9,7 +9,7 @@ from playsound3 import playsound, PlaysoundException
 
 logger = logging.getLogger("pytest_fahhh")
 
-DEFAULT_SOUND = resources.files("pytest_fahhh") / "sound.mp3"
+DEFAULT_SOUND = resources.files("pytest_fahhh_on_fail") / "sound.mp3"
 
 
 def _play_sound(path: Path) -> None:

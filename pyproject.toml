@@ -1,26 +1,48 @@
 [project]
-name = "pytest-fahhh"
-version = "0.1.0"
+name = "pytest-fahhh-on-fail"
+version = "1.0.0"
 description = "A pytest plugin that plays FAHHH meme sound when a test session fails."
 readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE.md"]
 authors = [
-    { name = "deepaerial", email = "nazarii.oleksiuk@gmail.com" }
+    { name = "deepaerial", email = "devaeial@gmail.com" }
 ]
-requires-python = ">=3.12"
+keywords = ["pytest", "plugin", "sound", "notification", "fail"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Pytest",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
 dependencies = [
     "playsound3>=3.3.1",
 ]
 
-[project.entry-points."pytest11"]
-pytest-fahhh = "pytest_fahhh.plugin"
+[project.urls]
+Homepage = "https://github.com/deepaerial/pytest-fahhh"
+Repository = "https://github.com/deepaerial/pytest-fahhh"
+"Bug Tracker" = "https://github.com/deepaerial/pytest-fahhh/issues"
 
-[project.scripts]
-pytest-fahhh = "pytest_fahhh:main"
+[project.entry-points."pytest11"]
+pytest-fahhh-on-fail = "pytest_fahhh_on_fail.plugin"
 
 [dependency-groups]
 dev = [
     "pytest>=8.0",
+    "tox>=4.20",
+    "tox-uv>=1.20",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 [build-system]
 requires = ["uv_build>=0.8.0,<0.9"]

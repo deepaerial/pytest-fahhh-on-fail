@@ -8,3 +8,18 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+*.swp
+*.swo

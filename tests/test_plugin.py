@@ -68,9 +68,7 @@ def test_missing_file_warns_and_run_unaffected(pytester, caplog):
     missing = pytester.path / "nope.mp3"
     result = pytester.runpytest("--on-fail-sound", str(missing))
     result.assert_outcomes(failed=1)
-    assert any(
-        "file not found" in message for message in caplog.messages
-    )
+    assert any("file not found" in message for message in caplog.messages)
 
 
 def test_playback_error_does_not_break_run(pytester, monkeypatch):

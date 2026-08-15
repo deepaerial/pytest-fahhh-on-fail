@@ -103,9 +103,18 @@ CI runs the same matrix (Python 3.10–3.14) on every push to `main`.
 
 ## Releasing
 
-Publishing is automatic on push to `main`: after the test matrix passes, the
-workflow reads the version from `pyproject.toml` and, if no `v<version>` tag
-exists yet, creates it and publishes the package to PyPI.
+The CI pipeline is a chain of separate jobs, each running only after the
+previous one succeeds:
+
+1. **lint** — `ruff check` + `ruff format --check`
+2. **test** — the full Python 3.10–3.14 matrix
+3. **tag** — reads the version from `pyproject.toml`; if no `v<version>` tag
+   exists yet, creates and pushes it
+4. **publish** — builds the wheel and publishes to PyPI
+
+`lint` and `test` also run on every pull request. The `tag` and `publish` jobs
+run only on push to `main`, and publishing happens only when the `tag` job
+actually created a new tag (i.e. the version was bumped).
 
 So a release is just bumping the version:
 
@@ -117,4 +126,6 @@ git push origin main
 ```
 
 Requires a trusted publisher configured on the PyPI project
-(`pytest-fahhh-on-fail`).
+(`pytest-fahhh-on-fail`). If a publish run fails after the tag was already
+created, delete the tag (`git push origin :refs/tags/v1.0.0`) and push again,
+or bump the version.

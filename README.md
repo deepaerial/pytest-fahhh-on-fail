@@ -22,6 +22,16 @@ background once the run finishes.
 pytest
 ```
 
+To try the sound immediately after cloning the repo:
+
+```bash
+uv sync
+uv run pytest test_fail.py
+```
+
+The repo includes an intentionally-failing `test_fail.py`, so the run fails on
+purpose and the plugin plays the bundled `sound.mp3` as soon as it finishes.
+
 ### Options
 
 | Option | Description |
@@ -79,3 +89,14 @@ uv run pytest
 The test suite uses pytest's `pytester` fixture to run fake sessions and verify
 that the sound is triggered on failure, but not on success, missing files, or
 disabling switches.
+
+### Supported Python versions
+
+The plugin supports Python 3.10+. Run the full matrix locally with tox (powered
+by `tox-uv`, so uv handles the virtualenvs and the lockfile):
+
+```bash
+uv run tox
+```
+
+CI runs the same matrix (Python 3.10–3.14) on every push to `main`.

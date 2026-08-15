@@ -1,5 +1,5 @@
 [project]
-name = "pytest-fahhh"
+name = "pytest-fahhh-on-fail"
 version = "1.0.0"
 description = "A pytest plugin that plays FAHHH meme sound when a test session fails."
 readme = "README.md"
@@ -32,7 +32,7 @@ Repository = "https://github.com/deepaerial/pytest-fahhh"
 "Bug Tracker" = "https://github.com/deepaerial/pytest-fahhh/issues"
 
 [project.entry-points."pytest11"]
-pytest-fahhh = "pytest_fahhh.plugin"
+pytest-fahhh-on-fail = "pytest_fahhh_on_fail.plugin"
 
 [dependency-groups]
 dev = [

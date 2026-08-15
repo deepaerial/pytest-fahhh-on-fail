@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Pytest plugin that plays the bundled `sound.mp3` when a test session fails.
+- Pytest plugin (published as `pytest-fahhh-on-fail`) that plays the bundled
+  `sound.mp3` when a test session fails.
 - Options:
   - `--on-fail-sound PATH` to play a custom sound file.
   - `--no-on-fail-sound` to disable the sound.

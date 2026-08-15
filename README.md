@@ -1,13 +1,13 @@
-# pytest-fahhh
+# pytest-fahhh-on-fail
 
 A pytest plugin that plays [FAHHH sound](https://www.youtube.com/watch?v=nh49oWrwFhM) from meme whenever a test session ends in failure.
 
 ## Installation
 
 ```bash
-uv add --dev pytest-fahhh
+uv add --dev pytest-fahhh-on-fail
 # or
-pip install pytest-fahhh
+pip install pytest-fahhh-on-fail
 ```
 
 The plugin registers itself via the `pytest11` entry point, so it is
@@ -100,3 +100,21 @@ uv run tox
 ```
 
 CI runs the same matrix (Python 3.10–3.14) on every push to `main`.
+
+## Releasing
+
+Publishing is automatic on push to `main`: after the test matrix passes, the
+workflow reads the version from `pyproject.toml` and, if no `v<version>` tag
+exists yet, creates it and publishes the package to PyPI.
+
+So a release is just bumping the version:
+
+```bash
+# 1. bump `version` in pyproject.toml
+git add pyproject.toml uv.lock
+git commit -m "release v1.0.1"
+git push origin main
+```
+
+Requires a trusted publisher configured on the PyPI project
+(`pytest-fahhh-on-fail`).

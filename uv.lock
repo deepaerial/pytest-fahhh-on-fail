@@ -139,7 +139,7 @@ wheels = [
 ]
 
 [[package]]
-name = "pytest-fahhh"
+name = "pytest-fahhh-on-fail"
 version = "1.0.0"
 source = { editable = "." }
 dependencies = [

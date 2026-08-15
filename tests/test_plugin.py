@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest
 from playsound3 import PlaysoundException
 
-from pytest_fahhh import plugin
+from pytest_fahhh_on_fail import plugin
 
 
 def _failing_test(pytester: pytest.Pytester) -> None:

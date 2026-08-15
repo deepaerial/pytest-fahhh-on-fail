@@ -1,7 +1,7 @@
 [project]
 name = "pytest-fahhh-on-fail"
-version = "1.0.0"
 description = "A pytest plugin that plays FAHHH meme sound when a test session fails."
+dynamic = ["version"]
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
@@ -46,5 +46,23 @@ dev = [
 testpaths = ["tests"]
 
 [build-system]
-requires = ["uv_build>=0.8.0,<0.9"]
-build-backend = "uv_build"
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pytest_fahhh_on_fail"]
+
+[tool.hatch.build.targets.sdist]
+only-include = [
+    "src",
+    "pyproject.toml",
+    "README.md",
+    "LICENSE.md",
+    "CHANGELOG.md",
+]
+
+[tool.uv-dynamic-versioning]
+fallback-version = "0.0.0"

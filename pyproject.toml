@@ -1,10 +1,10 @@
 [project]
 name = "pytest-fahhh"
-version = "0.1.0"
+version = "1.0.0"
 description = "A pytest plugin that plays FAHHH meme sound when a test session fails."
 readme = "README.md"
 authors = [
-    { name = "deepaerial", email = "nazarii.oleksiuk@gmail.com" }
+    { name = "deepaerial", email = "devaeial@gmail.com" }
 ]
 requires-python = ">=3.12"
 dependencies = [
@@ -21,6 +21,9 @@ pytest-fahhh = "pytest_fahhh:main"
 dev = [
     "pytest>=8.0",
 ]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 [build-system]
 requires = ["uv_build>=0.8.0,<0.9"]
